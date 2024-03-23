@@ -34,17 +34,12 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
 
     - name: Build with Gradle Wrapper
-      run: chmod +x ./gradlew && ./gradlew build
+      run: chmod +x ./gradlew && ./gradlew build && ./gradlew shadowJar
 
-    - uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Release
+      uses: softprops/action-gh-release@v2
       with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "Development Build"
-          files: |
-            LICENSE.txt
-            *.jar
+        files: build/libs/*.jar
 
   dependency-submission:
 

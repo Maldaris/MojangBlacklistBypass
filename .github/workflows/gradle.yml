@@ -39,6 +39,7 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
+        tag: 'latest'
         files: build/libs/*.jar
 
   dependency-submission:
